@@ -170,7 +170,9 @@ int x = reg.register(f, p, u, l);
  JOptionPane.showMessageDialog(fill_up, "Successfully Registered");
  
     
- this.clear_reg_txtfld();// TODO add your handling code here:
+ this.clear_reg_txtfld();
+//kyut ko
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void lnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnActionPerformed
