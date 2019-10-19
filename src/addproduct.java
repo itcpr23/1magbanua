@@ -35,6 +35,18 @@ public class addproduct extends javax.swing.JFrame {
             String sql = "select * from product where pname like ?;";
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/login?", "root", "");
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, "%"+prdname+"%");
+            ResultSet rs = pstmt.executeQuery();
+            DefaultTableModel tbl = (DefaultTableModel)tbl1.getModel();
+            tbl.setRowCount(0);
+            if(!rs.isBeforeFirst()){
+                tbl.addRow(new Object[]{"NO DATA"});
+            }else{
+                while(rs.next()){
+                tbl.addRow(new Object[]{rs.getInt("id"),rs.getString("pname"),rs.getInt("pquantity"),rs.getString("pprice")});
+                }
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(addproduct.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
