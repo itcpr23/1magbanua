@@ -44,5 +44,22 @@ class prodAdd {
         
 //To change body of generated methods, choose Tools | Templates.
     }
+    public int addQuantity(int id, Object quantity){
+        int m = 0;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = (Connection)DriverManager.getConnection("jdbc:mysql://localhost/login?", "root", "");
+            PreparedStatement pstmt = con.prepareStatement("update product set pquantity=(pquantity+?)where ID=?");
+            pstmt.setObject(1, quantity);
+            pstmt.setInt(2, id);
+            m=pstmt.executeUpdate();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(prodAdd.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(prodAdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return m;
+    }
     
 }
